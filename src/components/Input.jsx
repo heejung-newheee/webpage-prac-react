@@ -1,34 +1,43 @@
 import React, { useState } from 'react';
 import { styled } from 'styled-components';
-import StButton from './Button';
+import { StButton } from './Button';
 
 const Label = styled.label`
     line-height: 35px;
 `;
 const InputBox = styled.input`
+    height: 40px;
     margin-right: 50px;
     margin-left: 3px;
     border: solid 1px #333;
-    padding: 10px;
     border-radius: 5px;
+    box-sizing: border-box;
+    padding: 0 10px;
 `;
 function Input() {
     const [name, setName] = useState();
-    const [price, setPrice] = useState();
+    const [price, setPrice] = useState(0);
 
-    const submitHandler = () => {
-        alert(`name : ${name} price : ${price}`);
-        setName('');
-        setPrice('');
+    const submitHandler = (e) => {
+        e.preventDefault();
+        if (!name) {
+            alert('이름을 입력해주세요');
+        } else if (!price) {
+            alert('가격을 입력해주세요');
+        } else {
+            // const valueNum = price;
+            const platNum = price.replaceAll(',', '');
+            alert(`name : ${name} price : ${platNum}`);
+            setName('');
+            setPrice('');
+        }
     };
     const numInput = (e) => {
-        // const numCheck = /^[0-9,]/.test(price);
-        // if (!numCheck && price) return;
-        // if (numCheck) {
-        //     const numValue = price.replaceAll(',', '');
-        //     price = numValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-        // }
-        setPrice(+e.target.value);
+        const value = e.target.value;
+        const removedCommaValue = Number(value.replaceAll(',', ''));
+        // const onlyNumber = value.replace(/[^0-9]/g, '');/
+        setPrice(removedCommaValue.toLocaleString());
+        console.log(value);
     };
 
     return (

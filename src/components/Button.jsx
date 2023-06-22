@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled } from 'styled-components';
 
-const ButtonWrap = styled.div`
+export const ButtonWrap = styled.div`
     display: flex;
     gap: 10px;
     margin-bottom: 10px;
@@ -34,7 +34,7 @@ export const StButton = styled.button`
                 break;
         }
         return `width : ${btnWidth};
-    height : ${btnHeight}`;
+                height : ${btnHeight}`;
     }};
 `;
 
