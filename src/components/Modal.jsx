@@ -14,6 +14,7 @@ const BgModal = styled.div`
     right: 0;
     bottom: 0;
     background-color: rgba(199, 199, 199, 0.733);
+    z-index: 999;
 `;
 const ModalBox = styled.div`
     width: 30%;

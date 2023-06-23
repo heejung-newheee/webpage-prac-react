@@ -1,10 +1,8 @@
 import React from 'react';
 
 const Wrapper = {
-    maxWidth: '1200px',
-    minWidth: '800px',
     margin: '0 auto',
-    padding: '5px'
+    padding: '20px 5px 100px'
 };
 
 function Layout({ children }) {

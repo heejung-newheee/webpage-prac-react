@@ -36,6 +36,9 @@ export const StButton = styled.button`
         return `width : ${btnWidth};
                 height : ${btnHeight}`;
     }};
+    &:active {
+        background-color: ${(props) => props.acColor || '#fff'};
+    }
 `;
 
 function Button({ bgColor, btnSize }) {
@@ -52,8 +55,10 @@ function Button({ bgColor, btnSize }) {
                 <StButton stBorder={'solid 3px #00e6bf'} btnSize="large" onClick={btnAlert}>
                     Large Primary Button
                 </StButton>
-                <StButton bgColor={'#00e6bf'}>Medium</StButton>
-                <StButton bgColor={'#00e6bf'} btnSize="small">
+                <StButton bgColor={'#00e6bf'} acColor={'#00a589'}>
+                    Medium
+                </StButton>
+                <StButton bgColor={'#00e6bf'} acColor={'#00a589'} btnSize="small">
                     Small
                 </StButton>
             </ButtonWrap>
@@ -61,10 +66,10 @@ function Button({ bgColor, btnSize }) {
                 <StButton stBorder={'solid 3px #ffb7a6'} fontColor={'#c72205'} btnSize="large" onClick={btnConfirm}>
                     Large Negative Button
                 </StButton>
-                <StButton bgColor={'#ffb7a6'} fontColor={'#c72205'}>
+                <StButton bgColor={'#ffb7a6'} fontColor={'#c72205'} acColor={'#ee6952'}>
                     Medium
                 </StButton>
-                <StButton bgColor={'#ffb7a6'} fontColor={'#c72205'} btnSize="small">
+                <StButton bgColor={'#ffb7a6'} fontColor={'#c72205'} acColor={'#ee6952'} btnSize="small">
                     Small
                 </StButton>
             </ButtonWrap>

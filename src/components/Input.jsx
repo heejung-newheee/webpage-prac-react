@@ -7,7 +7,7 @@ const Label = styled.label`
 `;
 const InputBox = styled.input`
     height: 40px;
-    margin-right: 50px;
+    margin-right: 30px;
     margin-left: 3px;
     border: solid 1px #333;
     border-radius: 5px;
@@ -37,7 +37,6 @@ function Input() {
         const removedCommaValue = Number(value.replaceAll(',', ''));
         // const onlyNumber = value.replace(/[^0-9]/g, '');/
         setPrice(removedCommaValue.toLocaleString());
-        console.log(value);
     };
 
     return (

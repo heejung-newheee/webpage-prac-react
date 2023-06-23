@@ -18,7 +18,6 @@ const SelectBtn = styled.button`
     width: 300px;
     padding: 0 16px;
     line-height: 40px;
-    color: rgb(119 119 119);
     text-align: left;
     border: 1px solid rgba(224, 226, 231, 0.75);
     border-radius: 6px;
@@ -26,18 +25,11 @@ const SelectBtn = styled.button`
     justify-content: space-between;
     position: relative;
     top: 0;
-    &selected {
-        color: #3f4150;
-    }
-    &:active {
-        border-color: rgba(224, 226, 231, 1);
-    }
 `;
 const Dropdown = styled.ul`
     position: absolute;
     z-index: 2;
-    top: 100%;
-    left: 0;
+    left: ${(props) => props.leftLocation || '0'};
     width: 300px;
     overflow: hidden;
     background-color: #fff;
@@ -67,49 +59,54 @@ function Select() {
     };
     const [buttonText, setbuttonText] = useState('리액트');
     const changeText = (e) => {
-        const textValue = e.target.textContent;
-        setbuttonText(textValue);
-        setSlide((slideTwo) => !slideTwo);
+        setbuttonText(e.target.textContent);
     };
+    const [buttonTextTwo, setbuttonTextTwo] = useState('리액트');
+    const changeTextTwo = (e) => {
+        const textValueTwo = e.target.textContent;
+        setbuttonTextTwo(textValueTwo);
+        setSlideTwo((slideTwo) => !slideTwo);
+    };
+
     return (
         <Box>
             <h1>Select</h1>
             <Flex>
-                <div style={{ position: 'relative' }}>
-                    <SelectBtn onClick={slideToggleOne} className="selDefault">
+                <div>
+                    <SelectBtn className="selDefault" onClick={slideToggleOne} onBlur={() => setSlide(false)}>
                         {buttonText}
                     </SelectBtn>
-                    <Dropdown className={slide ? 'slideShow' : 'slideHide'}>
+                    <Dropdown className={slide ? 'slideShow' : 'slideHide'} leftLocation={'8px'}>
                         <li>
-                            <DropOption onClick={changeText}>리액트</DropOption>
+                            <DropOption onMouseDown={changeText}>리액트</DropOption>
                         </li>
                         <li>
-                            <DropOption onClick={changeText}>자바</DropOption>
+                            <DropOption onMouseDown={changeText}>자바</DropOption>
                         </li>
                         <li>
-                            <DropOption onClick={changeText}>스프링</DropOption>
+                            <DropOption onMouseDown={changeText}>스프링</DropOption>
                         </li>
                         <li>
-                            <DropOption onClick={changeText}>리액트네이티브</DropOption>
+                            <DropOption onMouseDown={changeText}>리액트네이티브</DropOption>
                         </li>
                     </Dropdown>
                 </div>
                 <div style={{ position: 'relative' }}>
-                    <SelectBtn onClick={slideToggleTwo} className="selDefault">
-                        리액트
+                    <SelectBtn className="selDefault" onClick={slideToggleTwo} onBlur={() => setSlideTwo(false)}>
+                        {buttonTextTwo}
                     </SelectBtn>
                     <Dropdown className={slideTwo ? 'slideShow' : 'slideHide'}>
                         <li>
-                            <DropOption>리액트</DropOption>
+                            <DropOption onMouseDown={changeTextTwo}>리액트</DropOption>
                         </li>
                         <li>
-                            <DropOption>자바</DropOption>
+                            <DropOption onMouseDown={changeTextTwo}>자바</DropOption>
                         </li>
                         <li>
-                            <DropOption>스프링</DropOption>
+                            <DropOption onMouseDown={changeTextTwo}>스프링</DropOption>
                         </li>
                         <li>
-                            <DropOption>리액트네이티브</DropOption>
+                            <DropOption onMouseDown={changeTextTwo}>리액트네이티브</DropOption>
                         </li>
                     </Dropdown>
                 </div>

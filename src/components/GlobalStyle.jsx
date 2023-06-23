@@ -7,8 +7,9 @@ const GlobalStyle = createGlobalStyle`
         padding:0
     }
     button {
-        border:0;
-        cursor: pointer;        
+        border:0; 
+        background: #fff;   
+        cursor: pointer;    
     }
     a { 
         text-decoration: none;
