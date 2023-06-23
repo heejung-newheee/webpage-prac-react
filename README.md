@@ -26,4 +26,4 @@ styled-components 를 이용하여 재사용이 가능한 컴포넌트 구현
 
 # 배포 주소
 
-[Web Page Components]([webpage-prac-react.vercel.app](https://webpage-prac-react.vercel.app/)https://webpage-prac-react.vercel.app/)
+[Web Page Components](https://webpage-prac-react.vercel.app/)
