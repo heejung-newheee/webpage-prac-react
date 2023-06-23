@@ -14,7 +14,7 @@ const BgModal = styled.div`
     right: 0;
     bottom: 0;
     background-color: rgba(199, 199, 199, 0.733);
-    z-index: 999;
+    z-index: 888;
 `;
 const ModalBox = styled.div`
     width: 30%;
@@ -30,6 +30,7 @@ const ModalBox = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
+    z-index: 999;
     p {
         width: 100%;
     }
@@ -48,51 +49,47 @@ const CloseBtn = styled.button`
     background-color: #ddd;
 `;
 function Modal() {
-    // const modalOne = document.querySelector('.modal-one');
-
     const [isOpen, setIsOpen] = useState(false);
     const [isOpenTwo, setIsOpenTwo] = useState(false);
     const toggleModal = () => {
         setIsOpen((isOpen) => !isOpen);
-        console.log(isOpen);
     };
     const toggleModalTwo = () => {
-        setIsOpenTwo((isOpenTwo) => !isOpenTwo);
-        console.log(isOpenTwo);
-    };
-    const closeModal = () => {
         setIsOpenTwo((isOpenTwo) => !isOpenTwo);
     };
     return (
         <div>
             <h1>Modal</h1>
             <ButtonWrap>
-                <StButton bgColor={'#00e6bf'} onClick={toggleModal}>
+                <StButton onClick={toggleModal} bgColor={'#00e6bf'} acColor={'#00a589'}>
                     Open Modal
                 </StButton>
-                <StButton bgColor={'#ffb7a6'} fontColor={'#c72205'} onClick={toggleModalTwo}>
+                <StButton onClick={toggleModalTwo} bgColor={'#ffb7a6'} fontColor={'#c72205'} acColor={'#ee6952'}>
                     Open Modal
                 </StButton>
             </ButtonWrap>
 
-            <BgModal className={isOpen ? 'show' : 'hide'}>
+            <div className={isOpen ? 'show' : 'hide'}>
+                <BgModal></BgModal>
                 <ModalBox>
                     <p>닫기와 확인 버튼 2개가 있고, 외부 영역을 눌러도 모달이 닫히지 않아요.</p>
                     <div>
-                        <StButton bgColor={'#ffb7a6'} fontColor={'#c72205'} onClick={toggleModal}>
+                        <StButton onClick={toggleModal} bgColor={'#ffb7a6'} fontColor={'#c72205'} acColor={'#ee6952'}>
                             닫기
                         </StButton>
-                        <StButton bgColor={'#00e6bf'}>확인</StButton>
+                        <StButton bgColor={'#00e6bf'} acColor={'#00a589'}>
+                            확인
+                        </StButton>
                     </div>
                 </ModalBox>
-            </BgModal>
-
-            <BgModal className={isOpenTwo ? 'show' : 'hide'} onClick={toggleModalTwo}>
+            </div>
+            <div className={isOpenTwo ? 'show' : 'hide'}>
+                <BgModal onClick={toggleModalTwo}></BgModal>
                 <ModalBox>
                     <CloseBtn onClick={toggleModalTwo}>X</CloseBtn>
                     <p>닫기 버튼 1개가 있고, 외부 영역을 누르면 모달이 닫혀요.</p>
                 </ModalBox>
-            </BgModal>
+            </div>
         </div>
     );
 }

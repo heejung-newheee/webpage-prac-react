@@ -25,17 +25,15 @@ function Input() {
         } else if (!price) {
             alert('가격을 입력해주세요');
         } else {
-            // const valueNum = price;
             const platNum = price.replaceAll(',', '');
-            alert(`name : ${name} price : ${platNum}`);
+            alert(`name : ${name},       price : ${platNum}`);
             setName('');
-            setPrice('');
+            setPrice(0);
         }
     };
     const numInput = (e) => {
         const value = e.target.value;
-        const removedCommaValue = Number(value.replaceAll(',', ''));
-        // const onlyNumber = value.replace(/[^0-9]/g, '');/
+        const removedCommaValue = Number(value.replace(/[^0-9]/g, '').replaceAll(',', ''));
         setPrice(removedCommaValue.toLocaleString());
     };
 
@@ -44,16 +42,10 @@ function Input() {
             <h1>Input</h1>
             <form onSubmit={submitHandler}>
                 <Label for="">이름</Label>
-                <InputBox
-                    type="text"
-                    value={name}
-                    onChange={(e) => {
-                        setName(e.target.value);
-                    }}
-                />
+                <InputBox type="text" value={name} onChange={(e) => setName(e.target.value)} />
                 <Label for="">가격</Label>
                 <InputBox type="text" value={price} onChange={numInput} />
-                <StButton bgColor={'#00e6bf'} btnSize={'small'}>
+                <StButton bgColor={'#00e6bf'} btnSize={'small'} acColor={'#00a589'}>
                     저장
                 </StButton>
             </form>

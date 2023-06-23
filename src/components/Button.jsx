@@ -37,11 +37,11 @@ export const StButton = styled.button`
                 height : ${btnHeight}`;
     }};
     &:active {
-        background-color: ${(props) => props.acColor || '#fff'};
+        background-color: ${(props) => props.acColor || props.bgColor};
     }
 `;
 
-function Button({ bgColor, btnSize }) {
+function Button() {
     const btnAlert = () => {
         alert('버튼을 만들어보세요');
     };

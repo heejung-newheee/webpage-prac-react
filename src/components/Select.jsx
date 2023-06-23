@@ -63,9 +63,23 @@ function Select() {
     };
     const [buttonTextTwo, setbuttonTextTwo] = useState('리액트');
     const changeTextTwo = (e) => {
-        const textValueTwo = e.target.textContent;
-        setbuttonTextTwo(textValueTwo);
-        setSlideTwo((slideTwo) => !slideTwo);
+        setbuttonTextTwo(e.target.textContent);
+    };
+
+    const optionList = ['리액트', '자바', '스프링', '리액트네이티브'];
+    const getLabelName = (label) => {
+        switch (label) {
+            case '리액트':
+                return '리액트';
+            case '자바':
+                return '자바';
+            case '스프링':
+                return '스프링';
+            case '리액트네이티브':
+                return '리액트네이티브';
+            default:
+                return '리액트';
+        }
     };
 
     return (
@@ -77,18 +91,15 @@ function Select() {
                         {buttonText}
                     </SelectBtn>
                     <Dropdown className={slide ? 'slideShow' : 'slideHide'} leftLocation={'8px'}>
-                        <li>
-                            <DropOption onMouseDown={changeText}>리액트</DropOption>
-                        </li>
-                        <li>
-                            <DropOption onMouseDown={changeText}>자바</DropOption>
-                        </li>
-                        <li>
-                            <DropOption onMouseDown={changeText}>스프링</DropOption>
-                        </li>
-                        <li>
-                            <DropOption onMouseDown={changeText}>리액트네이티브</DropOption>
-                        </li>
+                        {optionList.map((name) => {
+                            return (
+                                <li>
+                                    <DropOption onMouseDown={changeText} name={name}>
+                                        {getLabelName(name)}
+                                    </DropOption>
+                                </li>
+                            );
+                        })}
                     </Dropdown>
                 </div>
                 <div style={{ position: 'relative' }}>
@@ -96,18 +107,15 @@ function Select() {
                         {buttonTextTwo}
                     </SelectBtn>
                     <Dropdown className={slideTwo ? 'slideShow' : 'slideHide'}>
-                        <li>
-                            <DropOption onMouseDown={changeTextTwo}>리액트</DropOption>
-                        </li>
-                        <li>
-                            <DropOption onMouseDown={changeTextTwo}>자바</DropOption>
-                        </li>
-                        <li>
-                            <DropOption onMouseDown={changeTextTwo}>스프링</DropOption>
-                        </li>
-                        <li>
-                            <DropOption onMouseDown={changeTextTwo}>리액트네이티브</DropOption>
-                        </li>
+                        {optionList.map((name) => {
+                            return (
+                                <li>
+                                    <DropOption onMouseDown={changeTextTwo} name={name}>
+                                        {getLabelName(name)}
+                                    </DropOption>
+                                </li>
+                            );
+                        })}
                     </Dropdown>
                 </div>
             </Flex>
