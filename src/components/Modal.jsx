@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { styled } from 'styled-components';
 import { StButton } from './Button';
 import { ButtonWrap } from './Button';
+import { createPortal } from 'react-dom';
 import '../App.css';
 
 const BgModal = styled.div`
@@ -68,30 +69,42 @@ function Modal() {
                     Open Modal
                 </StButton>
             </ButtonWrap>
-
-            <div className={isOpen ? 'show' : 'hide'}>
-                <BgModal></BgModal>
-                <ModalBox>
-                    <p>닫기와 확인 버튼 2개가 있고, 외부 영역을 눌러도 모달이 닫히지 않아요.</p>
-                    <div>
-                        <StButton onClick={toggleModal} bgColor={'#ffb7a6'} fontColor={'#c72205'} acColor={'#ee6952'}>
-                            닫기
-                        </StButton>
-                        <StButton bgColor={'#00e6bf'} acColor={'#00a589'}>
-                            확인
-                        </StButton>
-                    </div>
-                </ModalBox>
-            </div>
-            <div className={isOpenTwo ? 'show' : 'hide'}>
-                <BgModal onClick={toggleModalTwo}></BgModal>
-                <ModalBox>
-                    <CloseBtn onClick={toggleModalTwo}>X</CloseBtn>
-                    <p>닫기 버튼 1개가 있고, 외부 영역을 누르면 모달이 닫혀요.</p>
-                </ModalBox>
-            </div>
+            <ModalContents isOpen={isOpen} isOpenTwo={isOpenTwo} toggleModal={toggleModal} toggleModalTwo={toggleModalTwo} />
         </div>
     );
 }
 
+function ModalContents({ isOpen, isOpenTwo, toggleModal, toggleModalTwo }) {
+    return createPortal(
+        <div>
+            <div className={isOpen ? 'show' : 'hide'}>
+                <BgModal>
+                    <ModalBox>
+                        <p>닫기와 확인 버튼 2개가 있고, 외부 영역을 눌러도 모달이 닫히지 않아요.</p>
+                        <div>
+                            <StButton onClick={toggleModal} bgColor={'#ffb7a6'} fontColor={'#c72205'} acColor={'#ee6952'}>
+                                닫기
+                            </StButton>
+                            <StButton bgColor={'#00e6bf'} acColor={'#00a589'}>
+                                확인
+                            </StButton>
+                        </div>
+                    </ModalBox>
+                </BgModal>
+            </div>
+            <div className={isOpenTwo ? 'show' : 'hide'}>
+                <BgModal onClick={toggleModalTwo}>
+                    <ModalBox
+                        onClick={(event) => {
+                            event.stopPropagation();
+                        }}>
+                        <CloseBtn onClick={toggleModalTwo}>X</CloseBtn>
+                        <p>닫기 버튼 1개가 있고, 외부 영역을 누르면 모달이 닫혀요.</p>
+                    </ModalBox>
+                </BgModal>
+            </div>
+        </div>,
+        document.getElementById('portal-root')
+    );
+}
 export default Modal;

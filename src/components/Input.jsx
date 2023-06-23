@@ -25,15 +25,14 @@ function Input() {
         } else if (!price) {
             alert('가격을 입력해주세요');
         } else {
-            const platNum = price.replaceAll(',', '');
-            alert(`name : ${name},       price : ${platNum}`);
+            alert(`name : ${name},       price : ${price.replaceAll(',', '')}`);
             setName('');
             setPrice(0);
         }
     };
     const numInput = (e) => {
         const value = e.target.value;
-        const removedCommaValue = Number(value.replace(/[^0-9]/g, '').replaceAll(',', ''));
+        const removedCommaValue = Number(value.replace(/[^0-9]/g, ''));
         setPrice(removedCommaValue.toLocaleString());
     };
 
